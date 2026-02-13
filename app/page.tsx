@@ -322,11 +322,27 @@ export default function Home() {
             <p className="text-lg font-semibold text-white mb-2">
               WatchMyLinks — Link Monitoring for Creators
             </p>
-            <p className="text-sm">
+            <p className="text-sm mb-4">
               Made with 👻 by Echo & Nico
             </p>
+            
+            {/* Legal Links */}
+            <div className="flex justify-center gap-6 text-sm mb-4">
+              <a href="/impressum" className="text-gray-400 hover:text-white transition-colors">
+                Impressum
+              </a>
+              <span className="text-gray-600">|</span>
+              <a href="/datenschutz" className="text-gray-400 hover:text-white transition-colors">
+                Datenschutz
+              </a>
+              <span className="text-gray-600">|</span>
+              <a href="mailto:nicolasjahnel@outlook.de" className="text-gray-400 hover:text-white transition-colors">
+                Kontakt
+              </a>
+            </div>
+            
             <p className="text-xs mt-4">
-              © 2026 WatchMyLinks. All rights reserved.
+              © 2026 Nicolas David Jahnel. All rights reserved.
             </p>
           </div>
         </div>
