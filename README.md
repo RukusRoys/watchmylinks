@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WatchMyLinks - Link Monitoring for Creators
 
-## Getting Started
+Affiliate link monitoring tool for YouTube creators, Instagram influencers, and content creators.
 
-First, run the development server:
+## 🚀 Current Status
+
+**Phase:** MVP Build
+**Version:** 0.1.0 (Pre-Launch)
+**Domain:** watchmylinks.app
+
+### ✅ Completed:
+- [x] Next.js 14 setup with TypeScript
+- [x] Tailwind CSS styling
+- [x] Landing page (full copy)
+- [x] Free link checker tool
+- [x] YouTube API integration
+- [x] Link status checking (200, 404, redirects)
+- [x] Results page with lost revenue calculator
+
+### 🔨 In Progress:
+- [ ] Vercel deployment
+- [ ] DNS setup (watchmylinks.app → Vercel)
+- [ ] Testing & bug fixes
+- [ ] Stripe payment integration (early access)
+
+### 📅 Next Steps:
+- [ ] Beta testing with 2-3 creators
+- [ ] Soft launch (limited Reddit post)
+- [ ] Collect pre-payments (target: 20-50)
+- [ ] Build full MVP if validation successful
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **API:** YouTube Data API v3
+- **Deployment:** Vercel (free tier)
+- **Domain:** watchmylinks.app (€13.99/year)
+
+## 💻 Local Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔑 Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create `.env.local`:
+```
+YOUTUBE_API_KEY=your_key_here
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📊 Features
 
-## Learn More
+### Free Tool:
+- Paste YouTube video URL
+- Extract all links from description
+- Check HTTP status (working/broken/redirects)
+- Calculate lost revenue estimate
+- No signup required
 
-To learn more about Next.js, take a look at the following resources:
+### Planned (Full MVP):
+- Auto-monitoring (daily scans)
+- Email + SMS alerts
+- Dashboard (all links in one place)
+- Multi-platform (YouTube, Instagram, TikTok)
+- Analytics (click tracking, revenue attribution)
+- AI recovery suggestions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 Validation Goals
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Target:** 20-50 pre-paying users @ $10/month
+**Timeline:** 4 weeks
+**Success Criteria:** ≥20 pre-payments = BUILD FULL MVP
 
-## Deploy on Vercel
+## 📝 Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- API Key stored in `.env.local` (not committed)
+- Free tier limits: 10,000 YouTube API calls/day
+- Max 50 links checked per scan (prevent abuse)
+- 10 second timeout per link check
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔗 Links
+
+- Domain: watchmylinks.app (pending DNS)
+- Docs: `/docs` folder
+- API: `/app/api/check-links`
+
+---
+
+Built by Echo 👻 & Nico
