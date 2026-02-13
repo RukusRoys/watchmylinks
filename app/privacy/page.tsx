@@ -91,7 +91,8 @@ export default function Privacy() {
                 Germany
               </p>
               <p className="leading-relaxed mt-2">
-                Email: <a href="mailto:nicolasjahnel@outlook.de" className="text-blue-400 hover:text-blue-300 underline">nicolasjahnel@outlook.de</a>
+                Email: nicolasjahnel@outlook.de<br />
+                Contact form: <a href="/contact" className="text-blue-400 hover:text-blue-300 underline">Go to contact page</a>
               </p>
               <p className="leading-relaxed mt-4">
                 The responsible party is the natural or legal person who alone or jointly with others decides on the 
@@ -195,7 +196,7 @@ export default function Privacy() {
                 <li><strong className="text-white">Complaint:</strong> You can file a complaint with a supervisory authority.</li>
               </ul>
               <p className="leading-relaxed mt-4">
-                To exercise these rights, please contact: <a href="mailto:nicolasjahnel@outlook.de" className="text-blue-400 hover:text-blue-300 underline">nicolasjahnel@outlook.de</a>
+                To exercise these rights, please contact: nicolasjahnel@outlook.de or use our <a href="/contact" className="text-blue-400 hover:text-blue-300 underline">contact form</a>
               </p>
             </div>
           </div>

@@ -141,7 +141,7 @@ export default function HomeDE() {
             Alles, was du brauchst um deinen Umsatz zu schützen
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               {
                 icon: '📊',
@@ -157,16 +157,6 @@ export default function HomeDE() {
                 icon: '🔔',
                 title: 'Sofort-Benachrichtigung',
                 desc: 'E-Mail + SMS wenn Link kaputt geht. Anpassbare Benachrichtigungen.'
-              },
-              {
-                icon: '💡',
-                title: 'KI-gestützte Wiederherstellung',
-                desc: 'Alternative Produkte vorgeschlagen. Bessere Affiliate-Programme. Ein-Klick-Ersatz.'
-              },
-              {
-                icon: '📈',
-                title: 'Umsatz-Analytics',
-                desc: 'Klick-Tracking pro Link. Umsatz-Zuordnung. Performance-Benchmarks.'
               },
               {
                 icon: '🔗',
@@ -204,7 +194,6 @@ export default function HomeDE() {
                 <li>✓ Alle Plattformen</li>
                 <li>✓ Tägliche Überwachung</li>
                 <li>✓ E-Mail + SMS Benachrichtigungen</li>
-                <li>✓ Basis-Analytics</li>
               </ul>
             </div>
 
@@ -221,7 +210,6 @@ export default function HomeDE() {
                 <li>⭐ Prioritäts-Support</li>
                 <li>⭐ Beta-Features zuerst</li>
                 <li>⭐ Roadmap mitgestalten</li>
-                <li>⭐ Gründer-Badge</li>
               </ul>
               <button className="w-full bg-white text-blue-700 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl">
                 Jetzt Early Access sichern →
@@ -282,7 +270,7 @@ export default function HomeDE() {
               },
               {
                 q: 'Kann ich jederzeit kündigen?',
-                a: 'Ja, keine Vertragsbindung. Jederzeit kündbar, Daten herunterladen, vollständiger Export aller Links und Analytics.'
+                a: 'Ja, keine Vertragsbindung. Jederzeit kündbar, Daten herunterladen, vollständiger Export aller Links.'
               },
               {
                 q: 'Wann kann ich loslegen?',
@@ -322,11 +310,8 @@ export default function HomeDE() {
       <footer className="bg-slate-950 text-gray-400 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-lg font-semibold text-white mb-2">
+            <p className="text-lg font-semibold text-white mb-4">
               WatchMyLinks — Link-Überwachung für Creator
-            </p>
-            <p className="text-sm mb-4">
-              Made with 👻 by Echo & Nico
             </p>
             
             {/* Legal Links */}
@@ -339,13 +324,13 @@ export default function HomeDE() {
                 Datenschutz
               </a>
               <span className="text-gray-600">|</span>
-              <a href="mailto:nicolasjahnel@outlook.de" className="text-gray-400 hover:text-white transition-colors">
+              <a href="/kontakt" className="text-gray-400 hover:text-white transition-colors">
                 Kontakt
               </a>
             </div>
             
             <p className="text-xs mt-4">
-              © 2026 Nicolas David Jahnel. Alle Rechte vorbehalten.
+              © 2026 WatchMyLinks. Alle Rechte vorbehalten.
             </p>
           </div>
         </div>

@@ -96,7 +96,8 @@ export default function Datenschutz() {
                 Deutschland
               </p>
               <p className="leading-relaxed mt-2">
-                E-Mail: <a href="mailto:nicolasjahnel@outlook.de" className="text-blue-400 hover:text-blue-300 underline">nicolasjahnel@outlook.de</a>
+                E-Mail: nicolasjahnel@outlook.de<br />
+                Kontaktformular: <a href="/kontakt" className="text-blue-400 hover:text-blue-300 underline">Zur Kontaktseite</a>
               </p>
               <p className="leading-relaxed mt-4">
                 Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen 
@@ -203,7 +204,7 @@ export default function Datenschutz() {
                 <li><strong className="text-white">Beschwerde:</strong> Sie können sich bei einer Aufsichtsbehörde beschweren.</li>
               </ul>
               <p className="leading-relaxed mt-4">
-                Zur Ausübung dieser Rechte wenden Sie sich bitte an: <a href="mailto:nicolasjahnel@outlook.de" className="text-blue-400 hover:text-blue-300 underline">nicolasjahnel@outlook.de</a>
+                Zur Ausübung dieser Rechte wenden Sie sich bitte an: nicolasjahnel@outlook.de oder nutzen Sie unser <a href="/kontakt" className="text-blue-400 hover:text-blue-300 underline">Kontaktformular</a>
               </p>
             </div>
           </div>

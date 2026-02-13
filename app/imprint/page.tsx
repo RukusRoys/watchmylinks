@@ -20,7 +20,8 @@ export default function Imprint() {
             <div>
               <h2 className="text-xl font-bold text-white mb-2">Contact</h2>
               <p className="leading-relaxed">
-                Email: <a href="mailto:nicolasjahnel@outlook.de" className="text-blue-400 hover:text-blue-300 underline">nicolasjahnel@outlook.de</a>
+                Email: nicolasjahnel@outlook.de<br />
+                Contact form: <a href="/contact" className="text-blue-400 hover:text-blue-300 underline">Go to contact page</a>
               </p>
             </div>
 

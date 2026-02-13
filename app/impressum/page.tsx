@@ -20,7 +20,8 @@ export default function Impressum() {
             <div>
               <h2 className="text-xl font-bold text-white mb-2">Kontakt</h2>
               <p className="leading-relaxed">
-                E-Mail: <a href="mailto:nicolasjahnel@outlook.de" className="text-blue-400 hover:text-blue-300 underline">nicolasjahnel@outlook.de</a>
+                E-Mail: nicolasjahnel@outlook.de<br />
+                Kontaktformular: <a href="/kontakt" className="text-blue-400 hover:text-blue-300 underline">Zur Kontaktseite</a>
               </p>
             </div>
 

@@ -140,7 +140,7 @@ export default function Home() {
             Everything You Need to Protect Your Revenue
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               {
                 icon: '📊',
@@ -156,16 +156,6 @@ export default function Home() {
                 icon: '🔔',
                 title: 'Instant Alerts',
                 desc: 'Email + SMS notifications when link breaks. Customizable alert frequency.'
-              },
-              {
-                icon: '💡',
-                title: 'AI-Powered Recovery',
-                desc: 'Alternative products suggested. Higher-paying affiliate programs. One-click replacement.'
-              },
-              {
-                icon: '📈',
-                title: 'Revenue Analytics',
-                desc: 'Click tracking per link. Revenue attribution. Performance benchmarks.'
               },
               {
                 icon: '🔗',
@@ -203,7 +193,6 @@ export default function Home() {
                 <li>✓ All platforms</li>
                 <li>✓ Daily monitoring</li>
                 <li>✓ Email + SMS alerts</li>
-                <li>✓ Basic analytics</li>
               </ul>
             </div>
 
@@ -220,7 +209,6 @@ export default function Home() {
                 <li>⭐ Priority support</li>
                 <li>⭐ Beta features first</li>
                 <li>⭐ Shape the roadmap</li>
-                <li>⭐ Founder badge</li>
               </ul>
               <button className="w-full bg-white text-blue-700 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl">
                 Get Early Access Now →
@@ -281,7 +269,7 @@ export default function Home() {
               },
               {
                 q: 'Can I cancel anytime?',
-                a: 'Yes, no contracts. Cancel anytime, download your data, keep full export of all your links and analytics.'
+                a: 'Yes, no contracts. Cancel anytime, download your data, keep full export of all your links.'
               },
               {
                 q: 'When can I start using it?',
@@ -321,11 +309,8 @@ export default function Home() {
       <footer className="bg-slate-950 text-gray-400 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-lg font-semibold text-white mb-2">
+            <p className="text-lg font-semibold text-white mb-4">
               WatchMyLinks — Link Monitoring for Creators
-            </p>
-            <p className="text-sm mb-4">
-              Made with 👻 by Echo & Nico
             </p>
             
             {/* Legal Links */}
@@ -338,13 +323,13 @@ export default function Home() {
                 Privacy
               </a>
               <span className="text-gray-600">|</span>
-              <a href="mailto:nicolasjahnel@outlook.de" className="text-gray-400 hover:text-white transition-colors">
+              <a href="/contact" className="text-gray-400 hover:text-white transition-colors">
                 Contact
               </a>
             </div>
             
             <p className="text-xs mt-4">
-              © 2026 Nicolas David Jahnel. All rights reserved.
+              © 2026 WatchMyLinks. All rights reserved.
             </p>
           </div>
         </div>
