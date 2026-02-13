@@ -1,38 +1,78 @@
+'use client';
+
+import { useState } from 'react';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 
+type SortField = 'platform' | 'channel' | 'provider' | 'clicks' | 'revenue' | 'status';
+type SortDirection = 'asc' | 'desc';
+
 export default function DemoDE() {
-  const demoLinks = [
-    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'Amazon', url: 'Kabellose Kopfhörer', status: 'working', clicks: 1847, revenue: 421 },
-    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'PartnerHub', url: 'Software Deal (abgelaufen)', status: 'broken', clicks: 932, revenue: 0 },
-    { platform: 'Instagram', channel: '@lifestyle_creator', provider: 'Shopify Store', url: 'Yogamatten Bundle', status: 'working', clicks: 2341, revenue: 587 },
-    { platform: 'TikTok', channel: '@fitness_tips', provider: 'Awin', url: 'Protein Pulver', status: 'working', clicks: 1523, revenue: 305 },
-    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'ClickBank', url: 'Online Kurs (alter Link)', status: 'redirect', clicks: 743, revenue: 223 },
-    { platform: 'Blog', channel: 'meinefitness.de', provider: 'Amazon DE', url: 'Laufschuhe (alte SKU)', status: 'broken', clicks: 1122, revenue: 0 },
-    { platform: 'Newsletter', channel: 'Tech Wöchentlich', provider: 'CJ Affiliate', url: 'Webhosting Deal', status: 'working', clicks: 892, revenue: 267 },
-    { platform: 'YouTube', channel: 'Gadget Unboxing', provider: 'AliExpress', url: 'Handyhülle (entfernt)', status: 'broken', clicks: 2145, revenue: 0 },
-    { platform: 'Instagram', channel: '@home_decor', provider: 'Etsy', url: 'Handgemachte Kerzen', status: 'working', clicks: 645, revenue: 129 },
-    { platform: 'TikTok', channel: '@beauty_tips', provider: 'Amazon', url: 'Hautpflege Set', status: 'working', clicks: 3421, revenue: 821 },
-    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'ShareASale', url: 'VPN Service (weitergeleitet)', status: 'redirect', clicks: 534, revenue: 160 },
-    { platform: 'Blog', channel: 'reiseblog.net', provider: 'Rakuten', url: 'Koffer Deals', status: 'working', clicks: 423, revenue: 127 },
-    { platform: 'YouTube', channel: 'Gadget Unboxing', provider: 'PartnerStack', url: 'Altes Programm (geschlossen)', status: 'broken', clicks: 1834, revenue: 0 },
-    { platform: 'Newsletter', channel: 'Marketing Weekly', provider: 'Impact', url: 'Email Tool Trial', status: 'working', clicks: 756, revenue: 227 },
-    { platform: 'Instagram', channel: '@book_reviews', provider: 'Amazon', url: 'Bestseller Bücher', status: 'working', clicks: 1245, revenue: 374 },
+  const initialLinks = [
+    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'Amazon', product: 'Kabellose Kopfhörer', url: 'amazon.com/dp/B08XYZ', status: 'working', clicks: 1847, revenue: 421 },
+    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'PartnerHub', product: 'Software Deal', url: 'partnerhub.com/ref/expired', status: 'broken', clicks: 932, revenue: 0 },
+    { platform: 'Instagram', channel: '@lifestyle_creator', provider: 'Shopify Store', product: 'Yogamatten Bundle', url: 'shopify-store.com/yoga', status: 'working', clicks: 2341, revenue: 587 },
+    { platform: 'TikTok', channel: '@fitness_tips', provider: 'Awin', product: 'Protein Pulver', url: 'awin.com/link/789', status: 'working', clicks: 1523, revenue: 305 },
+    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'ClickBank', product: 'Online Kurs', url: 'clickbank.net/promo-old', status: 'redirect', clicks: 743, revenue: 223 },
+    { platform: 'Blog', channel: 'meinefitness.de', provider: 'Amazon DE', product: 'Laufschuhe', url: 'amazon.de/dp/OLDSKU', status: 'broken', clicks: 1122, revenue: 0 },
+    { platform: 'Newsletter', channel: 'Tech Wöchentlich', provider: 'CJ Affiliate', product: 'Webhosting Deal', url: 'cj.com/advertiser/link', status: 'working', clicks: 892, revenue: 267 },
+    { platform: 'YouTube', channel: 'Gadget Unboxing', provider: 'AliExpress', product: 'Handyhülle', url: 'aliexpress.com/item/old', status: 'broken', clicks: 2145, revenue: 0 },
+    { platform: 'Instagram', channel: '@lifestyle_creator', provider: 'Etsy', product: 'Handgemachte Kerzen', url: 'etsy.com/shop/product', status: 'working', clicks: 645, revenue: 129 },
+    { platform: 'TikTok', channel: '@beauty_tips', provider: 'Amazon', product: 'Hautpflege Set', url: 'amazon.com/product/abc789', status: 'working', clicks: 3421, revenue: 821 },
+    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'ShareASale', product: 'VPN Service', url: 'shareasale.com/m-pr.cfm', status: 'redirect', clicks: 534, revenue: 160 },
+    { platform: 'Blog', channel: 'reiseblog.net', provider: 'Rakuten', product: 'Koffer Deals', url: 'rakuten.com/affiliate', status: 'working', clicks: 423, revenue: 127 },
+    { platform: 'YouTube', channel: 'Gadget Unboxing', provider: 'PartnerStack', product: 'Altes Programm', url: 'partner-network.com/closed', status: 'broken', clicks: 1834, revenue: 0 },
+    { platform: 'Newsletter', channel: 'Marketing Weekly', provider: 'Impact', product: 'Email Tool Trial', url: 'impact.com/campaign', status: 'working', clicks: 756, revenue: 227 },
+    { platform: 'Instagram', channel: '@lifestyle_creator', provider: 'Amazon', product: 'Bestseller Bücher', url: 'amazon.com/gp/product', status: 'working', clicks: 1245, revenue: 374 },
   ];
 
-  const totalLinks = demoLinks.length;
-  const workingLinks = demoLinks.filter(l => l.status === 'working').length;
-  const brokenLinks = demoLinks.filter(l => l.status === 'broken').length;
-  const redirectLinks = demoLinks.filter(l => l.status === 'redirect').length;
-  const totalClicks = demoLinks.reduce((sum, l) => sum + l.clicks, 0);
-  const totalRevenue = demoLinks.reduce((sum, l) => sum + l.revenue, 0);
-  const lostRevenue = demoLinks.filter(l => l.status === 'broken').reduce((sum, l) => sum + (l.clicks * 0.3), 0);
+  const [sortField, setSortField] = useState<SortField | null>(null);
+  const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
+  const [links, setLinks] = useState(initialLinks);
+
+  const handleSort = (field: SortField) => {
+    const newDirection = sortField === field && sortDirection === 'desc' ? 'asc' : 'desc';
+    setSortField(field);
+    setSortDirection(newDirection);
+
+    const sorted = [...links].sort((a, b) => {
+      let aVal: any = a[field];
+      let bVal: any = b[field];
+
+      if (field === 'clicks' || field === 'revenue') {
+        return newDirection === 'desc' ? bVal - aVal : aVal - bVal;
+      }
+
+      if (typeof aVal === 'string') aVal = aVal.toLowerCase();
+      if (typeof bVal === 'string') bVal = bVal.toLowerCase();
+
+      if (newDirection === 'desc') {
+        return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+      } else {
+        return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+      }
+    });
+
+    setLinks(sorted);
+  };
+
+  const SortIcon = ({ field }: { field: SortField }) => {
+    if (sortField !== field) return <span className="text-gray-500 ml-1">↕</span>;
+    return <span className="ml-1">{sortDirection === 'desc' ? '↓' : '↑'}</span>;
+  };
+
+  const totalLinks = links.length;
+  const workingLinks = links.filter(l => l.status === 'working').length;
+  const brokenLinks = links.filter(l => l.status === 'broken').length;
+  const redirectLinks = links.filter(l => l.status === 'redirect').length;
+  const totalClicks = links.reduce((sum, l) => sum + l.clicks, 0);
+  const totalRevenue = links.reduce((sum, l) => sum + l.revenue, 0);
+  const lostRevenue = links.filter(l => l.status === 'broken').reduce((sum, l) => sum + (l.clicks * 0.3), 0);
 
   return (
     <main className="min-h-screen bg-slate-900 py-20">
       <LanguageSwitcher />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Dashboard Demo
@@ -42,7 +82,6 @@ export default function DemoDE() {
           </p>
         </div>
 
-        {/* Stats Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg p-6 border-2 border-blue-500">
             <div className="text-blue-100 text-sm font-semibold mb-2">GESAMT LINKS</div>
@@ -69,7 +108,6 @@ export default function DemoDE() {
           </div>
         </div>
 
-        {/* Performance Overview */}
         <div className="bg-slate-800 rounded-lg p-8 border-2 border-slate-700 mb-8">
           <h2 className="text-2xl font-bold text-white mb-6">Performance-Übersicht</h2>
           
@@ -128,7 +166,6 @@ export default function DemoDE() {
           </div>
         </div>
 
-        {/* Info Box: Was sind Weiterleitungen? */}
         <div className="bg-amber-900/30 border-2 border-amber-600 rounded-lg p-6 mb-8">
           <div className="flex items-start gap-4">
             <div className="text-4xl">⚠️</div>
@@ -146,39 +183,71 @@ export default function DemoDE() {
           </div>
         </div>
 
-        {/* Links Table */}
         <div className="bg-slate-800 rounded-lg border-2 border-slate-700 overflow-hidden">
           <div className="p-6 border-b border-slate-700">
-            <h2 className="text-2xl font-bold text-white">Alle Links</h2>
+            <h2 className="text-2xl font-bold text-white">Alle Links (Klick auf Spalten zum Sortieren)</h2>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-slate-900">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">Quelle</th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">Affiliate</th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">Produkt/Link</th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">Status</th>
-                  <th className="px-6 py-4 text-right text-xs font-bold text-gray-300 uppercase">Klicks</th>
-                  <th className="px-6 py-4 text-right text-xs font-bold text-gray-300 uppercase">Umsatz</th>
+                  <th 
+                    onClick={() => handleSort('platform')}
+                    className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase cursor-pointer hover:text-white transition-colors"
+                  >
+                    Plattform <SortIcon field="platform" />
+                  </th>
+                  <th 
+                    onClick={() => handleSort('channel')}
+                    className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase cursor-pointer hover:text-white transition-colors"
+                  >
+                    Kanal <SortIcon field="channel" />
+                  </th>
+                  <th 
+                    onClick={() => handleSort('provider')}
+                    className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase cursor-pointer hover:text-white transition-colors"
+                  >
+                    Affiliate <SortIcon field="provider" />
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">
+                    Produkt / Link
+                  </th>
+                  <th 
+                    onClick={() => handleSort('status')}
+                    className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase cursor-pointer hover:text-white transition-colors"
+                  >
+                    Status <SortIcon field="status" />
+                  </th>
+                  <th 
+                    onClick={() => handleSort('clicks')}
+                    className="px-6 py-4 text-right text-xs font-bold text-gray-300 uppercase cursor-pointer hover:text-white transition-colors"
+                  >
+                    Klicks <SortIcon field="clicks" />
+                  </th>
+                  <th 
+                    onClick={() => handleSort('revenue')}
+                    className="px-6 py-4 text-right text-xs font-bold text-gray-300 uppercase cursor-pointer hover:text-white transition-colors"
+                  >
+                    Umsatz <SortIcon field="revenue" />
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-700">
-                {demoLinks.map((link, idx) => (
+                {links.map((link, idx) => (
                   <tr key={idx} className="hover:bg-slate-700/50 transition-colors">
                     <td className="px-6 py-4">
-                      <div className="flex flex-col gap-1">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-slate-700 text-gray-300 w-fit">
-                          {link.platform === 'YouTube' && '📺'}
-                          {link.platform === 'Instagram' && '📸'}
-                          {link.platform === 'TikTok' && '🎵'}
-                          {link.platform === 'Blog' && '📝'}
-                          {link.platform === 'Newsletter' && '✉️'}
-                          {' '}{link.platform}
-                        </span>
-                        <span className="text-xs text-gray-400">{link.channel}</span>
-                      </div>
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-slate-700 text-gray-300">
+                        {link.platform === 'YouTube' && '📺'}
+                        {link.platform === 'Instagram' && '📸'}
+                        {link.platform === 'TikTok' && '🎵'}
+                        {link.platform === 'Blog' && '📝'}
+                        {link.platform === 'Newsletter' && '✉️'}
+                        {' '}{link.platform}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="text-gray-200 text-sm font-medium">{link.channel}</div>
                     </td>
                     <td className="px-6 py-4">
                       <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-900 text-blue-300 border border-blue-600">
@@ -186,8 +255,9 @@ export default function DemoDE() {
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="text-gray-300 text-sm max-w-xs">
-                        {link.url}
+                      <div className="flex flex-col gap-1">
+                        <div className="text-gray-200 text-sm font-medium">{link.product}</div>
+                        <div className="text-gray-400 text-xs font-mono">{link.url}</div>
                       </div>
                     </td>
                     <td className="px-6 py-4">
@@ -222,7 +292,6 @@ export default function DemoDE() {
           </div>
         </div>
 
-        {/* CTA */}
         <div className="mt-12 text-center bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-12 border-2 border-blue-500">
           <h2 className="text-3xl font-bold text-white mb-4">
             Willst du das für deine Links?
