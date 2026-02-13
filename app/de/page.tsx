@@ -1,22 +1,23 @@
-import LinkChecker from './components/LinkChecker';
-import LanguageSwitcher from './components/LanguageSwitcher';
+import LinkChecker from '../components/LinkCheckerDE';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
-export default function Home() {
+export default function HomeDE() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       <LanguageSwitcher />
+      
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            YouTubers lose <span className="text-red-500">$500/month</span>
+            YouTuber verlieren <span className="text-red-500">$500/Monat</span>
             <br />
-            to broken affiliate links
+            durch kaputte Affiliate-Links
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
-            We check 100+ links daily so you don't have to.
+            Wir prüfen täglich 100+ Links, damit du es nicht musst.
             <br />
-            Stop losing commissions to dead links you don't even know about.
+            Schluss mit verlorenen Provisionen durch tote Links.
           </p>
           
           {/* CTA Buttons */}
@@ -25,13 +26,13 @@ export default function Home() {
               href="#free-checker"
               className="px-8 py-4 bg-blue-600 text-white rounded-lg font-bold text-lg hover:bg-blue-700 transition-colors shadow-xl"
             >
-              Check Your Links Free →
+              Links kostenlos prüfen →
             </a>
             <a
               href="#pricing"
               className="px-8 py-4 bg-slate-700 text-white rounded-lg font-bold text-lg border-2 border-blue-500 hover:bg-slate-600 transition-colors"
             >
-              Get Early Access - $10/mo
+              Early Access - $10/Monat
             </a>
           </div>
 
@@ -39,10 +40,10 @@ export default function Home() {
           <div className="max-w-2xl mx-auto">
             <div className="bg-slate-800 rounded-lg p-6 shadow-xl border-2 border-slate-700">
               <p className="text-gray-100 italic mb-2 text-lg">
-                "Found 12 broken links costing me $800/month"
+                "12 kaputte Links gefunden, die mich $800/Monat kosteten"
               </p>
               <p className="text-sm text-gray-300">
-                — Sarah K., 50K subscribers
+                — Sarah K., 50K Abonnenten
               </p>
             </div>
           </div>
@@ -53,33 +54,33 @@ export default function Home() {
       <div className="bg-slate-800 py-16" id="problem">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-4 text-white">
-            The Hidden Revenue Leak
+            Das versteckte Umsatzleck
           </h2>
           <p className="text-xl text-center text-gray-200 mb-12 font-semibold">
-            💰 Average creator loses $500-1,500/month to broken links
+            💰 Creator verlieren durchschnittlich $500-1.500/Monat durch kaputte Links
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 icon: '❌',
-                title: 'Programs Shut Down',
-                description: 'Affiliate programs close without notice. Your links → 404 pages.'
+                title: 'Programme schließen',
+                description: 'Affiliate-Programme werden ohne Vorwarnung beendet. Deine Links → 404 Fehler.'
               },
               {
                 icon: '❌',
-                title: 'Products Go Unavailable',
-                description: 'Amazon items go out of stock. Clicks → no commissions.'
+                title: 'Produkte nicht verfügbar',
+                description: 'Amazon-Artikel sind ausverkauft. Klicks → keine Provisionen.'
               },
               {
                 icon: '❌',
-                title: 'Links Break During Updates',
-                description: 'Platforms change URL structures. Old links stop working.'
+                title: 'Links brechen bei Updates',
+                description: 'Plattformen ändern URL-Strukturen. Alte Links funktionieren nicht mehr.'
               },
               {
                 icon: '❌',
-                title: "You Don't Even Know",
-                description: 'Unless you manually check 100+ links. (Spoiler: Nobody does this)'
+                title: 'Du weißt es nicht mal',
+                description: 'Es sei denn, du prüfst manuell 100+ Links. (Spoiler: Das macht niemand)'
               }
             ].map((item, idx) => (
               <div key={idx} className="bg-slate-900 rounded-lg p-6 border-2 border-slate-700">
@@ -99,20 +100,20 @@ export default function Home() {
       <div className="bg-slate-900 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-4 text-white">
-            Auto-Monitor Every Link, Everywhere
+            Überwache jeden Link, überall
           </h2>
           <p className="text-xl text-center text-gray-200 mb-12">
-            One dashboard for all your affiliate links across every platform
+            Ein Dashboard für alle deine Affiliate-Links auf jeder Plattform
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {[
-              { icon: '📺', title: 'YouTube', desc: 'Video descriptions, Playlists, Community posts' },
-              { icon: '📸', title: 'Instagram', desc: 'Bio links, Stories, Highlights' },
-              { icon: '🎵', title: 'TikTok', desc: 'Profile links, Video captions' },
-              { icon: '📝', title: 'Blog', desc: 'All posts, Comments' },
-              { icon: '✉️', title: 'Newsletter', desc: 'All emails, Signatures' },
-              { icon: '🔗', title: 'More', desc: 'Any platform with links' }
+              { icon: '📺', title: 'YouTube', desc: 'Video-Beschreibungen, Playlists, Community-Posts' },
+              { icon: '📸', title: 'Instagram', desc: 'Bio-Links, Stories, Highlights' },
+              { icon: '🎵', title: 'TikTok', desc: 'Profil-Links, Video-Untertitel' },
+              { icon: '📝', title: 'Blog', desc: 'Alle Beiträge, Kommentare' },
+              { icon: '✉️', title: 'Newsletter', desc: 'Alle E-Mails, Signaturen' },
+              { icon: '🔗', title: 'Mehr', desc: 'Jede Plattform mit Links' }
             ].map((platform, idx) => (
               <div key={idx} className="text-center p-6 bg-slate-800 rounded-lg border-2 border-slate-700">
                 <div className="text-5xl mb-3">{platform.icon}</div>
@@ -124,10 +125,10 @@ export default function Home() {
 
           <div className="text-center bg-blue-900 rounded-lg p-8 border-2 border-blue-600">
             <p className="text-2xl font-bold text-white">
-              Daily scans + instant alerts when links break
+              Tägliche Scans + sofortige Benachrichtigung bei kaputten Links
             </p>
             <p className="text-lg text-blue-200 mt-2">
-              Never lose another commission to a dead link
+              Nie wieder Provisionen durch tote Links verlieren
             </p>
           </div>
         </div>
@@ -137,40 +138,40 @@ export default function Home() {
       <div className="bg-slate-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-white">
-            Everything You Need to Protect Your Revenue
+            Alles, was du brauchst um deinen Umsatz zu schützen
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: '📊',
-                title: 'Centralized Dashboard',
-                desc: 'All your links in one place. Organize by platform, campaign, or product.'
+                title: 'Zentrales Dashboard',
+                desc: 'Alle Links an einem Ort. Sortiert nach Plattform, Kampagne oder Produkt.'
               },
               {
                 icon: '🔍',
-                title: '24/7 Monitoring',
-                desc: 'Automatic daily scans. Checks HTTP status codes. Detects redirects & timeouts.'
+                title: '24/7 Überwachung',
+                desc: 'Automatische tägliche Scans. Prüft HTTP-Statuscodes. Erkennt Weiterleitungen & Timeouts.'
               },
               {
                 icon: '🔔',
-                title: 'Instant Alerts',
-                desc: 'Email + SMS notifications when link breaks. Customizable alert frequency.'
+                title: 'Sofort-Benachrichtigung',
+                desc: 'E-Mail + SMS wenn Link kaputt geht. Anpassbare Benachrichtigungen.'
               },
               {
                 icon: '💡',
-                title: 'AI-Powered Recovery',
-                desc: 'Alternative products suggested. Higher-paying affiliate programs. One-click replacement.'
+                title: 'KI-gestützte Wiederherstellung',
+                desc: 'Alternative Produkte vorgeschlagen. Bessere Affiliate-Programme. Ein-Klick-Ersatz.'
               },
               {
                 icon: '📈',
-                title: 'Revenue Analytics',
-                desc: 'Click tracking per link. Revenue attribution. Performance benchmarks.'
+                title: 'Umsatz-Analytics',
+                desc: 'Klick-Tracking pro Link. Umsatz-Zuordnung. Performance-Benchmarks.'
               },
               {
                 icon: '🔗',
-                title: 'Platform Integrations',
-                desc: 'YouTube API (auto-scan). Instagram bio monitoring. Newsletter platforms.'
+                title: 'Plattform-Integrationen',
+                desc: 'YouTube API (Auto-Scan). Instagram Bio-Überwachung. Newsletter-Plattformen.'
               }
             ].map((feature, idx) => (
               <div key={idx} className="bg-slate-900 rounded-lg p-6 shadow-xl border-2 border-slate-700">
@@ -187,23 +188,23 @@ export default function Home() {
       <div className="bg-gradient-to-b from-slate-900 to-slate-800 py-16" id="pricing">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-white">
-            Lock in Founder Pricing
+            Sichere dir Gründer-Preise
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Regular Pricing */}
             <div className="bg-slate-700 rounded-lg p-8 border-2 border-slate-600 opacity-75">
               <div className="text-center mb-6">
-                <div className="text-red-400 font-bold mb-2">❌ Regular Pricing</div>
-                <div className="text-4xl font-bold mb-2 line-through text-gray-400">$20/month</div>
-                <div className="text-gray-300">After public launch</div>
+                <div className="text-red-400 font-bold mb-2">❌ Normal-Preis</div>
+                <div className="text-4xl font-bold mb-2 line-through text-gray-400">$20/Monat</div>
+                <div className="text-gray-300">Nach offiziellem Launch</div>
               </div>
               <ul className="space-y-3 text-gray-300">
-                <li>✓ Unlimited links</li>
-                <li>✓ All platforms</li>
-                <li>✓ Daily monitoring</li>
-                <li>✓ Email + SMS alerts</li>
-                <li>✓ Basic analytics</li>
+                <li>✓ Unbegrenzte Links</li>
+                <li>✓ Alle Plattformen</li>
+                <li>✓ Tägliche Überwachung</li>
+                <li>✓ E-Mail + SMS Benachrichtigungen</li>
+                <li>✓ Basis-Analytics</li>
               </ul>
             </div>
 
@@ -211,23 +212,23 @@ export default function Home() {
             <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg p-8 border-4 border-blue-500 shadow-2xl transform scale-105">
               <div className="text-center mb-6">
                 <div className="text-blue-100 font-bold mb-2 text-lg">✅ EARLY ACCESS</div>
-                <div className="text-5xl font-bold mb-2 text-white">$10/month</div>
-                <div className="text-blue-100 font-semibold">50% off for life</div>
+                <div className="text-5xl font-bold mb-2 text-white">$10/Monat</div>
+                <div className="text-blue-100 font-semibold">50% Rabatt für immer</div>
               </div>
               <ul className="space-y-3 text-white mb-6 font-medium">
-                <li>✓ Everything in Regular, PLUS:</li>
-                <li>⭐ Lifetime 50% discount</li>
-                <li>⭐ Priority support</li>
-                <li>⭐ Beta features first</li>
-                <li>⭐ Shape the roadmap</li>
-                <li>⭐ Founder badge</li>
+                <li>✓ Alles aus Normal-Preis, PLUS:</li>
+                <li>⭐ Lebenslanger 50% Rabatt</li>
+                <li>⭐ Prioritäts-Support</li>
+                <li>⭐ Beta-Features zuerst</li>
+                <li>⭐ Roadmap mitgestalten</li>
+                <li>⭐ Gründer-Badge</li>
               </ul>
               <button className="w-full bg-white text-blue-700 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl">
-                Get Early Access Now →
+                Jetzt Early Access sichern →
               </button>
               <div className="mt-4 text-center text-white text-sm font-semibold">
-                ⚠️ Limited to first 100 creators<br />
-                47/100 spots taken
+                ⚠️ Limitiert auf die ersten 100 Creator<br />
+                47/100 Plätze vergeben
               </div>
             </div>
           </div>
@@ -235,20 +236,20 @@ export default function Home() {
           <div className="mt-12 text-center">
             <div className="bg-green-900 border-2 border-green-600 rounded-lg p-6 inline-block">
               <p className="text-lg font-bold text-white mb-2">
-                💯 100% Money-Back Guarantee
+                💯 100% Geld-zurück-Garantie
               </p>
               <p className="text-green-100">
-                Start using in 6-8 weeks. If we don't deliver → full refund. No questions asked.
+                Start in 6-8 Wochen. Wenn wir nicht liefern → volle Rückerstattung. Keine Fragen.
               </p>
             </div>
           </div>
 
           <div className="mt-8 text-center">
             <p className="text-2xl font-bold text-white">
-              💰 One fixed link pays for 6 months
+              💰 Ein reparierter Link zahlt sich 6 Monate
             </p>
             <p className="text-gray-200 mt-2">
-              If you recover just $60 in commissions, the tool pays for itself for half a year.
+              Wenn du nur $60 an Provisionen wiederherstellst, hat sich das Tool für ein halbes Jahr bezahlt gemacht.
             </p>
           </div>
         </div>
@@ -258,34 +259,34 @@ export default function Home() {
       <div className="bg-slate-900 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-white">
-            Frequently Asked Questions
+            Häufig gestellte Fragen
           </h2>
 
           <div className="space-y-6">
             {[
               {
-                q: 'How is this different from PrettyLinks or ThirstyAffiliates?',
-                a: "We're built for creators (YouTube, Instagram, TikTok), not WordPress bloggers. Mobile-first, multi-platform, with YouTube API integration for auto-scanning."
+                q: 'Wie unterscheidet sich das von PrettyLinks oder ThirstyAffiliates?',
+                a: "Wir sind für Creator (YouTube, Instagram, TikTok) gebaut, nicht für WordPress-Blogger. Mobile-First, Multi-Plattform, mit YouTube API-Integration für Auto-Scanning."
               },
               {
-                q: 'Do you support YouTube?',
-                a: 'Yes! We auto-scan video descriptions, playlists, community posts, and channel about sections. Set it up once, never think about it again.'
+                q: 'Unterstützt ihr YouTube?',
+                a: 'Ja! Wir scannen automatisch Video-Beschreibungen, Playlists, Community-Posts und Kanal-Infos. Einmal einrichten, nie wieder dran denken.'
               },
               {
-                q: 'What platforms do you support?',
-                a: 'Currently: YouTube, Instagram, TikTok, blogs, newsletters. More coming soon (vote on roadmap as early access member).'
+                q: 'Welche Plattformen unterstützt ihr?',
+                a: 'Aktuell: YouTube, Instagram, TikTok, Blogs, Newsletter. Weitere folgen bald (als Early Access Mitglied hast du Mitspracherecht).'
               },
               {
-                q: "What if I don't have many links yet?",
-                a: 'Perfect! Start monitoring early before links break. Prevention is easier than recovery. Plus, you get lifetime 50% discount for joining early.'
+                q: "Was wenn ich noch nicht viele Links habe?",
+                a: 'Perfekt! Starte die Überwachung früh, bevor Links kaputt gehen. Prävention ist einfacher als Reparatur. Plus: Du bekommst lebenslang 50% Rabatt.'
               },
               {
-                q: 'Can I cancel anytime?',
-                a: 'Yes, no contracts. Cancel anytime, download your data, keep full export of all your links and analytics.'
+                q: 'Kann ich jederzeit kündigen?',
+                a: 'Ja, keine Vertragsbindung. Jederzeit kündbar, Daten herunterladen, vollständiger Export aller Links und Analytics.'
               },
               {
-                q: 'When can I start using it?',
-                a: "MVP launches in 6-8 weeks for early access members. You'll get beta access before public launch."
+                q: 'Wann kann ich loslegen?',
+                a: "MVP startet in 6-8 Wochen für Early Access Mitglieder. Du bekommst Beta-Zugang vor dem öffentlichen Launch."
               }
             ].map((faq, idx) => (
               <div key={idx} className="bg-slate-800 rounded-lg p-6 border-2 border-slate-700">
@@ -301,18 +302,18 @@ export default function Home() {
       <div className="bg-gradient-to-r from-blue-700 to-blue-800 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
-            Stop Losing Money to Broken Links
+            Schluss mit Geldverlust durch kaputte Links
           </h2>
           <p className="text-xl text-blue-100 mb-8 font-semibold">
-            Join 47 creators who locked in $10/month for life
+            47 Creator haben sich bereits $10/Monat lebenslang gesichert
           </p>
           <button className="px-12 py-5 bg-white text-blue-700 rounded-lg font-bold text-xl hover:bg-gray-100 transition-colors shadow-2xl">
-            Get Early Access Now →
+            Jetzt Early Access sichern →
           </button>
           <div className="mt-6 flex justify-center gap-8 text-white font-medium">
-            <span>✓ 50% off forever</span>
-            <span>✓ Start in 6-8 weeks</span>
-            <span>✓ 100% money-back guarantee</span>
+            <span>✓ 50% für immer</span>
+            <span>✓ Start in 6-8 Wochen</span>
+            <span>✓ 100% Geld-zurück-Garantie</span>
           </div>
         </div>
       </div>
@@ -322,7 +323,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="text-lg font-semibold text-white mb-2">
-              WatchMyLinks — Link Monitoring for Creators
+              WatchMyLinks — Link-Überwachung für Creator
             </p>
             <p className="text-sm mb-4">
               Made with 👻 by Echo & Nico
@@ -330,21 +331,21 @@ export default function Home() {
             
             {/* Legal Links */}
             <div className="flex justify-center gap-6 text-sm mb-4">
-              <a href="/imprint" className="text-gray-400 hover:text-white transition-colors">
-                Imprint
+              <a href="/impressum" className="text-gray-400 hover:text-white transition-colors">
+                Impressum
               </a>
               <span className="text-gray-600">|</span>
-              <a href="/privacy" className="text-gray-400 hover:text-white transition-colors">
-                Privacy
+              <a href="/datenschutz" className="text-gray-400 hover:text-white transition-colors">
+                Datenschutz
               </a>
               <span className="text-gray-600">|</span>
               <a href="mailto:nicolasjahnel@outlook.de" className="text-gray-400 hover:text-white transition-colors">
-                Contact
+                Kontakt
               </a>
             </div>
             
             <p className="text-xs mt-4">
-              © 2026 Nicolas David Jahnel. All rights reserved.
+              © 2026 Nicolas David Jahnel. Alle Rechte vorbehalten.
             </p>
           </div>
         </div>
