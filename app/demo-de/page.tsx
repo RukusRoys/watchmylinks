@@ -2,21 +2,21 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 
 export default function DemoDE() {
   const demoLinks = [
-    { platform: 'YouTube', url: 'amazon.com/product/xyz123', status: 'working', clicks: 1847, revenue: 421 },
-    { platform: 'YouTube', url: 'affiliate-program.com/ref/456', status: 'broken', clicks: 932, revenue: 0 },
-    { platform: 'Instagram', url: 'shopify-store.com/product', status: 'working', clicks: 2341, revenue: 587 },
-    { platform: 'TikTok', url: 'awin.com/link/789', status: 'working', clicks: 1523, revenue: 305 },
-    { platform: 'YouTube', url: 'clickbank.net/promo', status: 'redirect', clicks: 743, revenue: 223 },
-    { platform: 'Blog', url: 'amazon.de/dp/OLDSKU', status: 'broken', clicks: 1122, revenue: 0 },
-    { platform: 'Newsletter', url: 'cj.com/advertiser/link', status: 'working', clicks: 892, revenue: 267 },
-    { platform: 'YouTube', url: 'aliexpress.com/item/old-link', status: 'broken', clicks: 2145, revenue: 0 },
-    { platform: 'Instagram', url: 'etsy.com/shop/product', status: 'working', clicks: 645, revenue: 129 },
-    { platform: 'TikTok', url: 'amazon.com/product/abc789', status: 'working', clicks: 3421, revenue: 821 },
-    { platform: 'YouTube', url: 'shareasale.com/m-pr.cfm', status: 'redirect', clicks: 534, revenue: 160 },
-    { platform: 'Blog', url: 'rakuten.com/affiliate', status: 'working', clicks: 423, revenue: 127 },
-    { platform: 'YouTube', url: 'partner-network.com/old', status: 'broken', clicks: 1834, revenue: 0 },
-    { platform: 'Newsletter', url: 'impact.com/campaign', status: 'working', clicks: 756, revenue: 227 },
-    { platform: 'Instagram', url: 'amazon.com/gp/product', status: 'working', clicks: 1245, revenue: 374 },
+    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'Amazon', url: 'Kabellose Kopfhörer', status: 'working', clicks: 1847, revenue: 421 },
+    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'PartnerHub', url: 'Software Deal (abgelaufen)', status: 'broken', clicks: 932, revenue: 0 },
+    { platform: 'Instagram', channel: '@lifestyle_creator', provider: 'Shopify Store', url: 'Yogamatten Bundle', status: 'working', clicks: 2341, revenue: 587 },
+    { platform: 'TikTok', channel: '@fitness_tips', provider: 'Awin', url: 'Protein Pulver', status: 'working', clicks: 1523, revenue: 305 },
+    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'ClickBank', url: 'Online Kurs (alter Link)', status: 'redirect', clicks: 743, revenue: 223 },
+    { platform: 'Blog', channel: 'meinefitness.de', provider: 'Amazon DE', url: 'Laufschuhe (alte SKU)', status: 'broken', clicks: 1122, revenue: 0 },
+    { platform: 'Newsletter', channel: 'Tech Wöchentlich', provider: 'CJ Affiliate', url: 'Webhosting Deal', status: 'working', clicks: 892, revenue: 267 },
+    { platform: 'YouTube', channel: 'Gadget Unboxing', provider: 'AliExpress', url: 'Handyhülle (entfernt)', status: 'broken', clicks: 2145, revenue: 0 },
+    { platform: 'Instagram', channel: '@home_decor', provider: 'Etsy', url: 'Handgemachte Kerzen', status: 'working', clicks: 645, revenue: 129 },
+    { platform: 'TikTok', channel: '@beauty_tips', provider: 'Amazon', url: 'Hautpflege Set', status: 'working', clicks: 3421, revenue: 821 },
+    { platform: 'YouTube', channel: 'Tech Reviews Daily', provider: 'ShareASale', url: 'VPN Service (weitergeleitet)', status: 'redirect', clicks: 534, revenue: 160 },
+    { platform: 'Blog', channel: 'reiseblog.net', provider: 'Rakuten', url: 'Koffer Deals', status: 'working', clicks: 423, revenue: 127 },
+    { platform: 'YouTube', channel: 'Gadget Unboxing', provider: 'PartnerStack', url: 'Altes Programm (geschlossen)', status: 'broken', clicks: 1834, revenue: 0 },
+    { platform: 'Newsletter', channel: 'Marketing Weekly', provider: 'Impact', url: 'Email Tool Trial', status: 'working', clicks: 756, revenue: 227 },
+    { platform: 'Instagram', channel: '@book_reviews', provider: 'Amazon', url: 'Bestseller Bücher', status: 'working', clicks: 1245, revenue: 374 },
   ];
 
   const totalLinks = demoLinks.length;
@@ -128,6 +128,24 @@ export default function DemoDE() {
           </div>
         </div>
 
+        {/* Info Box: Was sind Weiterleitungen? */}
+        <div className="bg-amber-900/30 border-2 border-amber-600 rounded-lg p-6 mb-8">
+          <div className="flex items-start gap-4">
+            <div className="text-4xl">⚠️</div>
+            <div>
+              <h3 className="text-xl font-bold text-amber-300 mb-2">Was sind Weiterleitungen?</h3>
+              <p className="text-amber-100 leading-relaxed">
+                Eine Weiterleitung bedeutet, der Link funktioniert NOCH, ABER die URL hat sich geändert (301/302 Redirect). 
+                <span className="font-semibold"> Beispiel:</span> alter-shop.com/produkt → leitet weiter zu → neuer-shop.com/produkt
+              </p>
+              <p className="text-amber-100 leading-relaxed mt-2">
+                <span className="font-semibold">⚠️ Risiko:</span> Die Weiterleitung könnte bald kaputt gehen oder du verlierst Affiliate-Tracking. 
+                <span className="font-semibold"> Empfehlung:</span> Link auf die neue URL updaten.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Links Table */}
         <div className="bg-slate-800 rounded-lg border-2 border-slate-700 overflow-hidden">
           <div className="p-6 border-b border-slate-700">
@@ -138,8 +156,9 @@ export default function DemoDE() {
             <table className="w-full">
               <thead className="bg-slate-900">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">Plattform</th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">URL</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">Quelle</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">Affiliate</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">Produkt/Link</th>
                   <th className="px-6 py-4 text-left text-xs font-bold text-gray-300 uppercase">Status</th>
                   <th className="px-6 py-4 text-right text-xs font-bold text-gray-300 uppercase">Klicks</th>
                   <th className="px-6 py-4 text-right text-xs font-bold text-gray-300 uppercase">Umsatz</th>
@@ -149,17 +168,25 @@ export default function DemoDE() {
                 {demoLinks.map((link, idx) => (
                   <tr key={idx} className="hover:bg-slate-700/50 transition-colors">
                     <td className="px-6 py-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-slate-700 text-gray-300">
-                        {link.platform === 'YouTube' && '📺'}
-                        {link.platform === 'Instagram' && '📸'}
-                        {link.platform === 'TikTok' && '🎵'}
-                        {link.platform === 'Blog' && '📝'}
-                        {link.platform === 'Newsletter' && '✉️'}
-                        {' '}{link.platform}
+                      <div className="flex flex-col gap-1">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-slate-700 text-gray-300 w-fit">
+                          {link.platform === 'YouTube' && '📺'}
+                          {link.platform === 'Instagram' && '📸'}
+                          {link.platform === 'TikTok' && '🎵'}
+                          {link.platform === 'Blog' && '📝'}
+                          {link.platform === 'Newsletter' && '✉️'}
+                          {' '}{link.platform}
+                        </span>
+                        <span className="text-xs text-gray-400">{link.channel}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-900 text-blue-300 border border-blue-600">
+                        {link.provider}
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="text-gray-300 font-mono text-sm truncate max-w-xs">
+                      <div className="text-gray-300 text-sm max-w-xs">
                         {link.url}
                       </div>
                     </td>
