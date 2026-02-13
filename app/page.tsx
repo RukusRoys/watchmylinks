@@ -28,6 +28,12 @@ export default function Home() {
               Check Your Links Free →
             </a>
             <a
+              href="/demo"
+              className="px-8 py-4 bg-purple-600 text-white rounded-lg font-bold text-lg border-2 border-purple-400 hover:bg-purple-700 transition-colors"
+            >
+              📊 View Demo Dashboard
+            </a>
+            <a
               href="#pricing"
               className="px-8 py-4 bg-slate-700 text-white rounded-lg font-bold text-lg border-2 border-blue-500 hover:bg-slate-600 transition-colors"
             >
@@ -140,7 +146,7 @@ export default function Home() {
             Everything You Need to Protect Your Revenue
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: '📊',
@@ -156,6 +162,11 @@ export default function Home() {
                 icon: '🔔',
                 title: 'Instant Alerts',
                 desc: 'Email + SMS notifications when link breaks. Customizable alert frequency.'
+              },
+              {
+                icon: '📈',
+                title: 'Revenue Analytics',
+                desc: 'Click tracking per link. Revenue attribution. Performance benchmarks.'
               },
               {
                 icon: '🔗',
@@ -193,6 +204,7 @@ export default function Home() {
                 <li>✓ All platforms</li>
                 <li>✓ Daily monitoring</li>
                 <li>✓ Email + SMS alerts</li>
+                <li>✓ Revenue analytics</li>
               </ul>
             </div>
 
@@ -269,7 +281,7 @@ export default function Home() {
               },
               {
                 q: 'Can I cancel anytime?',
-                a: 'Yes, no contracts. Cancel anytime, download your data, keep full export of all your links.'
+                a: 'Yes, no contracts. Cancel anytime, download your data, keep full export of all your links and analytics.'
               },
               {
                 q: 'When can I start using it?',

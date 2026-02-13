@@ -29,6 +29,12 @@ export default function HomeDE() {
               Links kostenlos prüfen →
             </a>
             <a
+              href="/demo-de"
+              className="px-8 py-4 bg-purple-600 text-white rounded-lg font-bold text-lg border-2 border-purple-400 hover:bg-purple-700 transition-colors"
+            >
+              📊 Demo Dashboard ansehen
+            </a>
+            <a
               href="#pricing"
               className="px-8 py-4 bg-slate-700 text-white rounded-lg font-bold text-lg border-2 border-blue-500 hover:bg-slate-600 transition-colors"
             >
@@ -141,7 +147,7 @@ export default function HomeDE() {
             Alles, was du brauchst um deinen Umsatz zu schützen
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: '📊',
@@ -157,6 +163,11 @@ export default function HomeDE() {
                 icon: '🔔',
                 title: 'Sofort-Benachrichtigung',
                 desc: 'E-Mail + SMS wenn Link kaputt geht. Anpassbare Benachrichtigungen.'
+              },
+              {
+                icon: '📈',
+                title: 'Umsatz-Analytics',
+                desc: 'Klick-Tracking pro Link. Umsatz-Zuordnung. Performance-Benchmarks.'
               },
               {
                 icon: '🔗',
@@ -194,6 +205,7 @@ export default function HomeDE() {
                 <li>✓ Alle Plattformen</li>
                 <li>✓ Tägliche Überwachung</li>
                 <li>✓ E-Mail + SMS Benachrichtigungen</li>
+                <li>✓ Umsatz-Analytics</li>
               </ul>
             </div>
 
@@ -270,7 +282,7 @@ export default function HomeDE() {
               },
               {
                 q: 'Kann ich jederzeit kündigen?',
-                a: 'Ja, keine Vertragsbindung. Jederzeit kündbar, Daten herunterladen, vollständiger Export aller Links.'
+                a: 'Ja, keine Vertragsbindung. Jederzeit kündbar, Daten herunterladen, vollständiger Export aller Links und Analytics.'
               },
               {
                 q: 'Wann kann ich loslegen?',
