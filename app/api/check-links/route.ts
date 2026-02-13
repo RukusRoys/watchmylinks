@@ -22,6 +22,85 @@ function extractUrls(text: string): string[] {
   return [...new Set(matches)]; // Remove duplicates
 }
 
+// Filter out obvious non-affiliate links (social media profiles, etc.)
+function isLikelyAffiliateLink(url: string): boolean {
+  try {
+    const urlObj = new URL(url);
+    const hostname = urlObj.hostname.toLowerCase().replace('www.', '');
+    const pathname = urlObj.pathname.toLowerCase();
+
+    // BLACKLIST: Definitely NOT affiliate links
+    
+    // Twitter/X profiles (not affiliate)
+    if ((hostname === 'twitter.com' || hostname === 'x.com') && 
+        (pathname.match(/^\/[a-zA-Z0-9_]+\/?$/) || pathname === '/')) {
+      return false;
+    }
+
+    // LinkedIn profiles (not affiliate)
+    if (hostname === 'linkedin.com' && 
+        (pathname.startsWith('/in/') || pathname.startsWith('/company/'))) {
+      return false;
+    }
+
+    // YouTube videos/channels (not affiliate)
+    if ((hostname === 'youtube.com' || hostname === 'youtu.be') && 
+        (pathname.startsWith('/watch') || pathname.startsWith('/channel') || 
+         pathname.startsWith('/@') || pathname.startsWith('/c/'))) {
+      return false;
+    }
+
+    // Discord invites (not affiliate)
+    if ((hostname === 'discord.gg' || hostname === 'discord.com') && 
+        pathname.startsWith('/invite')) {
+      return false;
+    }
+
+    // Instagram profiles (simple ones - not shopping links)
+    if (hostname === 'instagram.com' && 
+        pathname.match(/^\/[a-zA-Z0-9_.]+\/?$/)) {
+      return false;
+    }
+
+    // Facebook profiles (not affiliate)
+    if (hostname === 'facebook.com' && 
+        (pathname.match(/^\/[a-zA-Z0-9.]+\/?$/) || pathname.startsWith('/profile.php'))) {
+      return false;
+    }
+
+    // TikTok profiles (but NOT TikTok Shop links)
+    if (hostname === 'tiktok.com' && 
+        pathname.match(/^\/@[a-zA-Z0-9_.]+\/?$/)) {
+      return false;
+    }
+
+    // Patreon creator pages (not affiliate)
+    if (hostname === 'patreon.com' && 
+        pathname.match(/^\/[a-zA-Z0-9_]+\/?$/)) {
+      return false;
+    }
+
+    // Link aggregators (personal link pages)
+    if (hostname === 'linktr.ee' || hostname === 'beacons.ai' || 
+        hostname === 'bio.link' || hostname === 'linkin.bio') {
+      return false;
+    }
+
+    // Threads profiles
+    if (hostname === 'threads.net' && 
+        pathname.match(/^\/@[a-zA-Z0-9_.]+\/?$/)) {
+      return false;
+    }
+
+    // Everything else: assume it COULD be an affiliate link
+    return true;
+
+  } catch (e) {
+    // If URL parsing fails, include it (better safe than sorry)
+    return true;
+  }
+}
+
 // Check single link status
 async function checkLinkStatus(url: string) {
   try {
@@ -101,7 +180,20 @@ export async function POST(req: NextRequest) {
     }
 
     const description = data.items[0].snippet.description;
-    const urls = extractUrls(description);
+    const allUrls = extractUrls(description);
+    
+    // Filter out social media profile links, keep potential affiliate links
+    const urls = allUrls.filter(url => isLikelyAffiliateLink(url));
+
+    if (allUrls.length === 0) {
+      return NextResponse.json({
+        working: 0,
+        broken: 0,
+        redirects: 0,
+        total: 0,
+        message: 'No links found in video description',
+      });
+    }
 
     if (urls.length === 0) {
       return NextResponse.json({
@@ -109,7 +201,7 @@ export async function POST(req: NextRequest) {
         broken: 0,
         redirects: 0,
         total: 0,
-        message: 'No links found in video description',
+        message: 'Links found, but they appear to be social media profiles (not affiliate links)',
       });
     }
 
