@@ -14,8 +14,10 @@
 
 ### **Neon Database Limits:**
 - [ ] Storage Usage (0.5 GB Free, dann $19/mo für Scale)
+- [ ] Compute Usage (150 CU-hours/month Free)
 - [ ] Connection Count
 - [ ] Query Count
+- [ ] Projects Count (100 max Free)
 
 ### **YouTube API Limits:**
 - [ ] Daily Quota Usage (10k units/day Free)
