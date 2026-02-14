@@ -8,10 +8,10 @@ export default function LanguageSwitcher() {
   const isGerman = pathname?.startsWith('/de');
 
   return (
-    <div className="fixed top-6 right-6 z-50 flex gap-2 bg-slate-800 rounded-lg p-2 border-2 border-slate-700 shadow-xl">
+    <div className="flex gap-1 bg-slate-800 rounded-lg p-1 border border-slate-700">
       <Link
         href="/"
-        className={`px-4 py-2 rounded-md font-semibold transition-colors ${
+        className={`px-3 py-1 rounded-md text-sm font-semibold transition-colors ${
           !isGerman
             ? 'bg-blue-600 text-white'
             : 'text-gray-300 hover:text-white hover:bg-slate-700'
@@ -21,7 +21,7 @@ export default function LanguageSwitcher() {
       </Link>
       <Link
         href="/de"
-        className={`px-4 py-2 rounded-md font-semibold transition-colors ${
+        className={`px-3 py-1 rounded-md text-sm font-semibold transition-colors ${
           isGerman
             ? 'bg-blue-600 text-white'
             : 'text-gray-300 hover:text-white hover:bg-slate-700'
