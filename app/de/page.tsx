@@ -1,10 +1,38 @@
 import LinkChecker from '../components/LinkCheckerDE';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import MobileMenu from '../components/MobileMenu';
 
 export default function HomeDE() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <LanguageSwitcher />
+      {/* Top Navigation */}
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex justify-between items-center">
+          <div className="text-xl md:text-2xl font-bold text-white">WatchMyLinks</div>
+          
+          {/* Mobile Menu (visible on small screens) */}
+          <div className="md:hidden">
+            <MobileMenu />
+          </div>
+
+          {/* Desktop Menu (hidden on small screens) */}
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
+            <a
+              href="/sign-in"
+              className="px-4 py-2 text-white hover:text-blue-300 transition-colors font-medium"
+            >
+              Anmelden
+            </a>
+            <a
+              href="/sign-up"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors whitespace-nowrap"
+            >
+              Registrieren
+            </a>
+          </div>
+        </div>
+      </nav>
       
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">

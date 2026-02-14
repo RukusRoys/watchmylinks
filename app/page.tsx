@@ -1,5 +1,6 @@
 import LinkChecker from './components/LinkChecker';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import MobileMenu from './components/MobileMenu';
 
 export default function Home() {
   return (
@@ -7,8 +8,15 @@ export default function Home() {
       {/* Top Navigation */}
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold text-white">WatchMyLinks</div>
-          <div className="flex items-center gap-3">
+          <div className="text-xl md:text-2xl font-bold text-white">WatchMyLinks</div>
+          
+          {/* Mobile Menu (visible on small screens) */}
+          <div className="md:hidden">
+            <MobileMenu />
+          </div>
+
+          {/* Desktop Menu (hidden on small screens) */}
+          <div className="hidden md:flex items-center gap-3">
             <LanguageSwitcher />
             <a
               href="/sign-in"
