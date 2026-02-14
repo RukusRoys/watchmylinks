@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server'
 import { currentUser } from '@clerk/nextjs/server'
 import { stripe } from '@/lib/stripe'
 import { prisma } from '@/lib/db'
+import { SubscriptionStatus } from '@prisma/client'
 
 export async function POST(request: Request) {
   try {
@@ -32,7 +33,7 @@ export async function POST(request: Request) {
     }
 
     // If user already has a subscription, redirect to billing portal
-    if (dbUser.stripeCustomerId && dbUser.subscriptionStatus === 'ACTIVE') {
+    if (dbUser.stripeCustomerId && dbUser.subscriptionStatus === SubscriptionStatus.ACTIVE) {
       return NextResponse.json(
         { error: 'You already have an active subscription. Use the billing portal to manage it.' },
         { status: 400 }

@@ -1,6 +1,7 @@
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/db'
+import { SubscriptionStatus } from '@prisma/client'
 
 export default async function SettingsPage() {
   const user = await currentUser()
@@ -17,7 +18,7 @@ export default async function SettingsPage() {
     redirect('/dashboard')
   }
 
-  const isPremium = dbUser.subscriptionStatus === 'ACTIVE'
+  const isPremium = dbUser.subscriptionStatus === SubscriptionStatus.ACTIVE
 
   return (
     <div className="space-y-8">

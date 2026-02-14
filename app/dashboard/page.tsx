@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/db'
 import Link from 'next/link'
 import { UpgradeButton } from '@/app/components/UpgradeButton'
+import { SubscriptionStatus } from '@prisma/client'
 
 export default async function DashboardPage() {
   const user = await currentUser()
@@ -90,7 +91,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Subscription Status */}
-      {dbUser.subscriptionStatus === 'FREE' && (
+      {dbUser.subscriptionStatus === SubscriptionStatus.FREE && (
         <div className="bg-gradient-to-r from-blue-900 to-blue-800 rounded-lg p-6 border border-blue-700">
           <div className="flex items-center justify-between">
             <div>
@@ -116,7 +117,7 @@ export default async function DashboardPage() {
         </div>
       )}
 
-      {dbUser.subscriptionStatus === 'ACTIVE' && (
+      {dbUser.subscriptionStatus === SubscriptionStatus.ACTIVE && (
         <div className="bg-gradient-to-r from-green-900 to-green-800 rounded-lg p-6 border border-green-700">
           <div className="flex items-center justify-between">
             <div>

@@ -6,6 +6,7 @@ import { headers } from 'next/headers'
 import Stripe from 'stripe'
 import { stripe } from '@/lib/stripe'
 import { prisma } from '@/lib/db'
+import { SubscriptionStatus } from '@prisma/client'
 
 export async function POST(request: Request) {
   const body = await request.text()
@@ -93,7 +94,7 @@ async function handleSubscriptionCreated(session: Stripe.Checkout.Session) {
     data: {
       stripeCustomerId: session.customer as string,
       stripeSubscriptionId: session.subscription as string,
-      subscriptionStatus: 'ACTIVE',
+      subscriptionStatus: SubscriptionStatus.ACTIVE,
     },
   })
 }
@@ -134,7 +135,7 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
   await prisma.user.update({
     where: { id: user.id },
     data: {
-      subscriptionStatus: 'CANCELED',
+      subscriptionStatus: SubscriptionStatus.CANCELED,
       subscriptionEndsAt: new Date(),
     },
   })
@@ -153,7 +154,7 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
   await prisma.user.update({
     where: { id: user.id },
     data: {
-      subscriptionStatus: 'ACTIVE',
+      subscriptionStatus: SubscriptionStatus.ACTIVE,
     },
   })
 }
@@ -170,25 +171,25 @@ async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
   await prisma.user.update({
     where: { id: user.id },
     data: {
-      subscriptionStatus: 'PAST_DUE',
+      subscriptionStatus: SubscriptionStatus.PAST_DUE,
     },
   })
 }
 
-function mapSubscriptionStatus(status: Stripe.Subscription.Status): string {
+function mapSubscriptionStatus(status: Stripe.Subscription.Status): SubscriptionStatus {
   switch (status) {
     case 'active':
-      return 'ACTIVE'
+      return SubscriptionStatus.ACTIVE
     case 'canceled':
-      return 'CANCELED'
+      return SubscriptionStatus.CANCELED
     case 'past_due':
-      return 'PAST_DUE'
+      return SubscriptionStatus.PAST_DUE
     case 'trialing':
-      return 'TRIALING'
+      return SubscriptionStatus.TRIALING
     case 'incomplete':
     case 'incomplete_expired':
-      return 'INCOMPLETE'
+      return SubscriptionStatus.INCOMPLETE
     default:
-      return 'FREE'
+      return SubscriptionStatus.FREE
   }
 }
