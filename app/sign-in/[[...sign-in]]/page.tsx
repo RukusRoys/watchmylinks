@@ -10,6 +10,8 @@ export default function SignInPage() {
             card: "bg-slate-800 shadow-xl",
           },
         }}
+        afterSignInUrl="/dashboard"
+        redirectUrl="/dashboard"
       />
     </div>
   )

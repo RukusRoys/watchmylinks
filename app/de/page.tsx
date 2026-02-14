@@ -63,7 +63,7 @@ export default function HomeDE() {
               📊 Demo Dashboard ansehen
             </a>
             <a
-              href="#pricing"
+              href="/sign-up"
               className="px-8 py-4 bg-slate-700 text-white rounded-lg font-bold text-lg border-2 border-blue-500 hover:bg-slate-600 transition-colors"
             >
               Early Access - $10/Monat
@@ -251,9 +251,9 @@ export default function HomeDE() {
                 <li>⭐ Beta-Features zuerst</li>
                 <li>⭐ Roadmap mitgestalten</li>
               </ul>
-              <button className="w-full bg-white text-blue-700 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl">
+              <a href="/sign-up" className="block w-full bg-white text-blue-700 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl text-center">
                 Jetzt Early Access sichern →
-              </button>
+              </a>
               <div className="mt-4 text-center text-white text-sm font-semibold">
                 ⚠️ Limitiert auf die ersten 100 Creator<br />
                 47/100 Plätze vergeben
@@ -335,9 +335,9 @@ export default function HomeDE() {
           <p className="text-xl text-blue-100 mb-8 font-semibold">
             47 Creator haben sich bereits $10/Monat lebenslang gesichert
           </p>
-          <button className="px-12 py-5 bg-white text-blue-700 rounded-lg font-bold text-xl hover:bg-gray-100 transition-colors shadow-2xl">
+          <a href="/sign-up" className="inline-block px-12 py-5 bg-white text-blue-700 rounded-lg font-bold text-xl hover:bg-gray-100 transition-colors shadow-2xl">
             Jetzt Early Access sichern →
-          </button>
+          </a>
           <div className="mt-6 flex justify-center gap-8 text-white font-medium">
             <span>✓ 50% für immer</span>
             <span>✓ Start in 6-8 Wochen</span>
