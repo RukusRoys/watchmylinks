@@ -246,7 +246,7 @@ export default function Home() {
               </ul>
               <a href="/sign-up" className="block w-full bg-white text-blue-700 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl text-center">
                 Get Early Access Now →
-              </button>
+              </a>
               <div className="mt-4 text-center text-white text-sm font-semibold">
                 ⚠️ Limited to first 100 creators<br />
                 47/100 spots taken
@@ -330,7 +330,7 @@ export default function Home() {
           </p>
           <a href="/sign-up" className="inline-block px-12 py-5 bg-white text-blue-700 rounded-lg font-bold text-xl hover:bg-gray-100 transition-colors shadow-2xl">
             Get Early Access Now →
-          </button>
+          </a>
           <div className="mt-6 flex justify-center gap-8 text-white font-medium">
             <span>✓ 50% off forever</span>
             <span>✓ Start in 6-8 weeks</span>
