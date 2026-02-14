@@ -5,6 +5,28 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       <LanguageSwitcher />
+      
+      {/* Top Navigation */}
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex justify-between items-center">
+          <div className="text-2xl font-bold text-white">👁️ WatchMyLinks</div>
+          <div className="flex gap-4">
+            <a
+              href="/sign-in"
+              className="px-6 py-2 text-white hover:text-blue-300 transition-colors font-medium"
+            >
+              Log in
+            </a>
+            <a
+              href="/sign-up"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            >
+              Sign up
+            </a>
+          </div>
+        </div>
+      </nav>
+      
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="text-center">
@@ -34,7 +56,7 @@ export default function Home() {
               📊 View Demo Dashboard
             </a>
             <a
-              href="#pricing"
+              href="/sign-up"
               className="px-8 py-4 bg-slate-700 text-white rounded-lg font-bold text-lg border-2 border-blue-500 hover:bg-slate-600 transition-colors"
             >
               Get Early Access - $10/mo
@@ -222,7 +244,7 @@ export default function Home() {
                 <li>⭐ Beta features first</li>
                 <li>⭐ Shape the roadmap</li>
               </ul>
-              <button className="w-full bg-white text-blue-700 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl">
+              <a href="/sign-up" className="block w-full bg-white text-blue-700 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl text-center">
                 Get Early Access Now →
               </button>
               <div className="mt-4 text-center text-white text-sm font-semibold">
@@ -306,7 +328,7 @@ export default function Home() {
           <p className="text-xl text-blue-100 mb-8 font-semibold">
             Join 47 creators who locked in $10/month for life
           </p>
-          <button className="px-12 py-5 bg-white text-blue-700 rounded-lg font-bold text-xl hover:bg-gray-100 transition-colors shadow-2xl">
+          <a href="/sign-up" className="inline-block px-12 py-5 bg-white text-blue-700 rounded-lg font-bold text-xl hover:bg-gray-100 transition-colors shadow-2xl">
             Get Early Access Now →
           </button>
           <div className="mt-6 flex justify-center gap-8 text-white font-medium">
