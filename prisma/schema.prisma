@@ -26,13 +26,28 @@ enum LinkStatus {
   UNKNOWN
 }
 
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  TRIALING
+  INCOMPLETE
+  FREE
+}
+
 // Models
 model User {
-  id        String    @id @default(cuid())
-  email     String    @unique
-  name      String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id                   String              @id @default(cuid())
+  email                String              @unique
+  name                 String?
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+  
+  // Stripe billing
+  stripeCustomerId     String?             @unique
+  stripeSubscriptionId String?             @unique
+  subscriptionStatus   SubscriptionStatus  @default(FREE)
+  subscriptionEndsAt   DateTime?
   
   channels  Channel[]
   links     Link[]

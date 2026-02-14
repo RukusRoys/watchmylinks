@@ -2,6 +2,7 @@ import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/db'
 import Link from 'next/link'
+import { UpgradeButton } from '@/app/components/UpgradeButton'
 
 export default async function DashboardPage() {
   const user = await currentUser()
@@ -87,6 +88,54 @@ export default async function DashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* Subscription Status */}
+      {dbUser.subscriptionStatus === 'FREE' && (
+        <div className="bg-gradient-to-r from-blue-900 to-blue-800 rounded-lg p-6 border border-blue-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Upgrade to Premium 🚀
+              </h3>
+              <p className="text-blue-200 mb-4">
+                Get automatic monitoring, email alerts, and multi-platform support
+              </p>
+              <ul className="text-blue-100 text-sm space-y-1">
+                <li>✓ Full channel monitoring</li>
+                <li>✓ Automatic daily checks</li>
+                <li>✓ Email alerts for broken links</li>
+                <li>✓ Analytics dashboard</li>
+              </ul>
+            </div>
+            <div className="text-right">
+              <div className="text-4xl font-bold text-white mb-2">$10<span className="text-lg">/mo</span></div>
+              <div className="text-blue-200 text-sm mb-4">50% off for early access</div>
+              <UpgradeButton />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {dbUser.subscriptionStatus === 'ACTIVE' && (
+        <div className="bg-gradient-to-r from-green-900 to-green-800 rounded-lg p-6 border border-green-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Premium Active ✨
+              </h3>
+              <p className="text-green-200">
+                You have full access to all premium features
+              </p>
+            </div>
+            <Link
+              href="/dashboard/settings"
+              className="bg-green-700 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              Manage Subscription
+            </Link>
+          </div>
+        </div>
+      )}
 
       {/* Empty State or Channel List */}
       {totalChannels === 0 ? (
