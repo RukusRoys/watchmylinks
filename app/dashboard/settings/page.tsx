@@ -56,7 +56,7 @@ export default async function SettingsPage() {
     },
   }
 
-  const t = translations[dbUser.language as 'en' | 'de'] || translations.en
+  const t = translations[(dbUser.language || 'en') as 'en' | 'de']
 
   const isPremium = dbUser.subscriptionStatus === SubscriptionStatus.ACTIVE
 
@@ -97,7 +97,7 @@ export default async function SettingsPage() {
               {t.memberSince}
             </label>
             <div className="text-white">
-              {new Date(dbUser.createdAt).toLocaleDateString(dbUser.language === 'de' ? 'de-DE' : 'en-US', {
+              {new Date(dbUser.createdAt).toLocaleDateString((dbUser.language || 'en') === 'de' ? 'de-DE' : 'en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
@@ -111,7 +111,7 @@ export default async function SettingsPage() {
       <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
         <h2 className="text-xl font-bold text-white mb-2">{t.language}</h2>
         <p className="text-slate-400 text-sm mb-4">{t.languageDesc}</p>
-        <LanguageSelector currentLanguage={dbUser.language} />
+        <LanguageSelector currentLanguage={dbUser.language || 'en'} />
       </div>
 
       {/* Subscription Section */}
