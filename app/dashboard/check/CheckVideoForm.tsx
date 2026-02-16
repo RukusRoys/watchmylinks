@@ -11,9 +11,11 @@ interface CheckResult {
   }
   links: Array<{
     url: string
+    category: string
     provider: string
-    status: 'WORKING' | 'BROKEN'
+    status: 'WORKING' | 'BROKEN' | 'TIMEOUT'
     statusCode: number
+    finalUrl?: string
   }>
   message?: string
 }
@@ -122,75 +124,120 @@ export function CheckVideoForm() {
             <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 text-center">
               <div className="text-4xl mb-3">🤷</div>
               <h3 className="text-lg font-bold text-white mb-2">
-                Keine Affiliate-Links gefunden
+                Keine Links gefunden
               </h3>
               <p className="text-slate-400 text-sm">
-                In der Video-Beschreibung wurden keine bekannten Affiliate-Links entdeckt
+                In der Video-Beschreibung wurden keine Links entdeckt
               </p>
             </div>
           ) : (
-            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-              <h3 className="text-lg font-bold text-white mb-4">
-                Gefundene Links ({result.links.length})
-              </h3>
-              <div className="space-y-3">
-                {result.links.map((link, index) => (
-                  <div 
-                    key={index}
-                    className={`p-4 rounded-lg border ${
-                      link.status === 'WORKING' 
-                        ? 'bg-green-900/20 border-green-700' 
-                        : 'bg-red-900/20 border-red-700'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <span className={`px-2 py-1 rounded text-xs font-medium ${
-                            link.status === 'WORKING'
-                              ? 'bg-green-900 text-green-300'
-                              : 'bg-red-900 text-red-300'
-                          }`}>
-                            {link.status === 'WORKING' ? '✓ Funktioniert' : '✗ Defekt'}
-                          </span>
-                          <span className="text-slate-400 text-sm">
-                            {link.provider}
-                          </span>
-                          <span className="text-slate-500 text-sm">
-                            (Status: {link.statusCode})
-                          </span>
-                        </div>
-                        <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-400 hover:text-blue-300 text-sm break-all"
-                        >
-                          {link.url}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Summary */}
-              <div className="mt-6 pt-6 border-t border-slate-700">
-                <div className="grid grid-cols-2 gap-4 text-center">
+            <div className="space-y-4">
+              {/* Summary Stats */}
+              <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                <h3 className="text-lg font-bold text-white mb-4">
+                  Gefundene Links ({result.links.length})
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                   <div>
-                    <div className="text-3xl font-bold text-green-400">
+                    <div className="text-2xl font-bold text-green-400">
                       {result.links.filter(l => l.status === 'WORKING').length}
                     </div>
-                    <div className="text-sm text-slate-400">Funktionierend</div>
+                    <div className="text-xs text-slate-400">Funktionierend</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-red-400">
+                    <div className="text-2xl font-bold text-red-400">
                       {result.links.filter(l => l.status === 'BROKEN').length}
                     </div>
-                    <div className="text-sm text-slate-400">Defekt</div>
+                    <div className="text-xs text-slate-400">Defekt</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-yellow-400">
+                      {result.links.filter(l => l.status === 'TIMEOUT').length}
+                    </div>
+                    <div className="text-xs text-slate-400">Timeout</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-blue-400">
+                      {result.links.filter(l => l.category === 'Affiliate').length}
+                    </div>
+                    <div className="text-xs text-slate-400">Affiliate</div>
                   </div>
                 </div>
               </div>
+
+              {/* Categorized Links */}
+              {(['Affiliate', 'Shortlink', 'Eigener Shop', 'Sonstige'] as const).map(category => {
+                const categoryLinks = result.links.filter(l => l.category === category)
+                if (categoryLinks.length === 0) return null
+
+                const categoryEmoji = {
+                  'Affiliate': '🎯',
+                  'Shortlink': '🔗',
+                  'Eigener Shop': '🏪',
+                  'Sonstige': '📎',
+                }[category]
+
+                return (
+                  <div key={category} className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                    <h4 className="text-md font-bold text-white mb-4 flex items-center space-x-2">
+                      <span>{categoryEmoji}</span>
+                      <span>{category} ({categoryLinks.length})</span>
+                    </h4>
+                    <div className="space-y-3">
+                      {categoryLinks.map((link, index) => (
+                        <div 
+                          key={index}
+                          className={`p-4 rounded-lg border ${
+                            link.status === 'WORKING' 
+                              ? 'bg-green-900/20 border-green-700' 
+                              : link.status === 'TIMEOUT'
+                              ? 'bg-yellow-900/20 border-yellow-700'
+                              : 'bg-red-900/20 border-red-700'
+                          }`}
+                        >
+                          <div className="flex items-start justify-between mb-2">
+                            <div className="flex-1">
+                              <div className="flex flex-wrap items-center gap-2 mb-2">
+                                <span className={`px-2 py-1 rounded text-xs font-medium ${
+                                  link.status === 'WORKING'
+                                    ? 'bg-green-900 text-green-300'
+                                    : link.status === 'TIMEOUT'
+                                    ? 'bg-yellow-900 text-yellow-300'
+                                    : 'bg-red-900 text-red-300'
+                                }`}>
+                                  {link.status === 'WORKING' ? '✓ Funktioniert' : 
+                                   link.status === 'TIMEOUT' ? '⏱️ Timeout' : '✗ Defekt'}
+                                </span>
+                                <span className="text-slate-400 text-xs">
+                                  {link.provider}
+                                </span>
+                                {link.statusCode > 0 && (
+                                  <span className="text-slate-500 text-xs">
+                                    (HTTP {link.statusCode})
+                                  </span>
+                                )}
+                              </div>
+                              <a
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-400 hover:text-blue-300 text-sm break-all block mb-1"
+                              >
+                                {link.url}
+                              </a>
+                              {link.finalUrl && link.finalUrl !== link.url && (
+                                <div className="text-xs text-slate-500 mt-1">
+                                  → Weitergeleitet zu: <span className="text-slate-400">{link.finalUrl}</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           )}
         </div>
