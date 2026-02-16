@@ -1,7 +1,9 @@
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/db'
+import { LanguageSelector } from './LanguageSelector'
 import { SubscriptionStatus } from '@prisma/client'
+import Link from 'next/link'
 
 export default async function SettingsPage() {
   const user = await currentUser()
@@ -10,6 +12,7 @@ export default async function SettingsPage() {
     redirect('/sign-in')
   }
 
+  // Get user from database
   const dbUser = await prisma.user.findUnique({
     where: { email: user.emailAddresses[0].emailAddress },
   })
@@ -18,31 +21,83 @@ export default async function SettingsPage() {
     redirect('/dashboard')
   }
 
+  const translations = {
+    en: {
+      title: 'Settings',
+      subtitle: 'Manage your account preferences',
+      account: 'Account',
+      email: 'Email',
+      name: 'Name',
+      memberSince: 'Member since',
+      language: 'Language',
+      languageDesc: 'Choose your preferred language',
+      subscription: 'Subscription',
+      subscriptionStatus: 'Status',
+      manageBilling: 'Manage Billing',
+      upgradeNow: 'Upgrade Now',
+      free: 'Free',
+      premium: 'Premium',
+    },
+    de: {
+      title: 'Einstellungen',
+      subtitle: 'Verwalte deine Kontoeinstellungen',
+      account: 'Konto',
+      email: 'E-Mail',
+      name: 'Name',
+      memberSince: 'Mitglied seit',
+      language: 'Sprache',
+      languageDesc: 'Wähle deine bevorzugte Sprache',
+      subscription: 'Abonnement',
+      subscriptionStatus: 'Status',
+      manageBilling: 'Abrechnung verwalten',
+      upgradeNow: 'Jetzt upgraden',
+      free: 'Kostenlos',
+      premium: 'Premium',
+    },
+  }
+
+  const t = translations[dbUser.language as 'en' | 'de'] || translations.en
+
   const isPremium = dbUser.subscriptionStatus === SubscriptionStatus.ACTIVE
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-4xl mx-auto space-y-8">
+      {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Einstellungen</h1>
-        <p className="text-slate-400">Verwalte dein Konto und Abonnement</p>
+        <h1 className="text-3xl font-bold text-white mb-2">
+          {t.title}
+        </h1>
+        <p className="text-slate-400">
+          {t.subtitle}
+        </p>
       </div>
 
-      {/* Account Info */}
+      {/* Account Section */}
       <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-        <h2 className="text-xl font-bold text-white mb-4">Konto-Informationen</h2>
-        <div className="space-y-3">
+        <h2 className="text-xl font-bold text-white mb-4">{t.account}</h2>
+        <div className="space-y-4">
           <div>
-            <div className="text-sm text-slate-400">Email</div>
+            <label className="block text-sm font-medium text-slate-400 mb-1">
+              {t.email}
+            </label>
             <div className="text-white">{dbUser.email}</div>
           </div>
+          
+          {dbUser.name && (
+            <div>
+              <label className="block text-sm font-medium text-slate-400 mb-1">
+                {t.name}
+              </label>
+              <div className="text-white">{dbUser.name}</div>
+            </div>
+          )}
+
           <div>
-            <div className="text-sm text-slate-400">Name</div>
-            <div className="text-white">{dbUser.name || 'Nicht gesetzt'}</div>
-          </div>
-          <div>
-            <div className="text-sm text-slate-400">Mitglied seit</div>
+            <label className="block text-sm font-medium text-slate-400 mb-1">
+              {t.memberSince}
+            </label>
             <div className="text-white">
-              {new Date(dbUser.createdAt).toLocaleDateString('en-US', {
+              {new Date(dbUser.createdAt).toLocaleDateString(dbUser.language === 'de' ? 'de-DE' : 'en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
@@ -52,69 +107,52 @@ export default async function SettingsPage() {
         </div>
       </div>
 
-      {/* Subscription */}
+      {/* Language Section */}
       <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-        <h2 className="text-xl font-bold text-white mb-4">Abonnement</h2>
-        
-        {isPremium ? (
-          <div className="space-y-4">
+        <h2 className="text-xl font-bold text-white mb-2">{t.language}</h2>
+        <p className="text-slate-400 text-sm mb-4">{t.languageDesc}</p>
+        <LanguageSelector currentLanguage={dbUser.language} />
+      </div>
+
+      {/* Subscription Section */}
+      <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+        <h2 className="text-xl font-bold text-white mb-4">{t.subscription}</h2>
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-slate-400 mb-1">
+              {t.subscriptionStatus}
+            </label>
             <div className="flex items-center space-x-2">
-              <span className="px-3 py-1 bg-green-900 text-green-300 rounded-full text-sm font-medium">
-                Premium Aktiv
+              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                isPremium 
+                  ? 'bg-green-900 text-green-300' 
+                  : 'bg-slate-600 text-slate-300'
+              }`}>
+                {isPremium ? t.premium : t.free}
               </span>
             </div>
-            
-            <div className="space-y-2">
-              <div className="text-sm text-slate-400">Status</div>
-              <div className="text-white capitalize">{dbUser.subscriptionStatus.toLowerCase()}</div>
-            </div>
+          </div>
 
-            {dbUser.subscriptionEndsAt && (
-              <div className="space-y-2">
-                <div className="text-sm text-slate-400">Endet am</div>
-                <div className="text-white">
-                  {new Date(dbUser.subscriptionEndsAt).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </div>
-              </div>
-            )}
-
-            <form action="/api/stripe/create-portal" method="POST">
-              <button
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          {isPremium ? (
+            <div>
+              <a
+                href={process.env.NEXT_PUBLIC_STRIPE_BILLING_PORTAL_URL || '#'}
+                className="inline-block bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
-                Abo verwalten
-              </button>
-            </form>
-
-            <p className="text-sm text-slate-400">
-              Zahlungsmethode ändern, Rechnungen ansehen oder Abo kündigen
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <span className="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm font-medium">
-                Kostenlos
-              </span>
+                {t.manageBilling}
+              </a>
             </div>
-
-            <div className="text-slate-300">
-              Du nutzt aktuell den kostenlosen Plan. Upgrade auf Premium, um alle Funktionen freizuschalten.
+          ) : (
+            <div>
+              <Link
+                href="/dashboard/upgrade"
+                className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              >
+                {t.upgradeNow}
+              </Link>
             </div>
-
-            <a
-              href="/dashboard"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-            >
-              Premium-Funktionen ansehen
-            </a>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   )
