@@ -23,13 +23,13 @@ export default async function SettingsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Settings</h1>
-        <p className="text-slate-400">Manage your account and subscription</p>
+        <h1 className="text-3xl font-bold text-white mb-2">Einstellungen</h1>
+        <p className="text-slate-400">Verwalte dein Konto und Abonnement</p>
       </div>
 
       {/* Account Info */}
       <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-        <h2 className="text-xl font-bold text-white mb-4">Account Information</h2>
+        <h2 className="text-xl font-bold text-white mb-4">Konto-Informationen</h2>
         <div className="space-y-3">
           <div>
             <div className="text-sm text-slate-400">Email</div>
@@ -37,10 +37,10 @@ export default async function SettingsPage() {
           </div>
           <div>
             <div className="text-sm text-slate-400">Name</div>
-            <div className="text-white">{dbUser.name || 'Not set'}</div>
+            <div className="text-white">{dbUser.name || 'Nicht gesetzt'}</div>
           </div>
           <div>
-            <div className="text-sm text-slate-400">Member since</div>
+            <div className="text-sm text-slate-400">Mitglied seit</div>
             <div className="text-white">
               {new Date(dbUser.createdAt).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -54,13 +54,13 @@ export default async function SettingsPage() {
 
       {/* Subscription */}
       <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-        <h2 className="text-xl font-bold text-white mb-4">Subscription</h2>
+        <h2 className="text-xl font-bold text-white mb-4">Abonnement</h2>
         
         {isPremium ? (
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <span className="px-3 py-1 bg-green-900 text-green-300 rounded-full text-sm font-medium">
-                Premium Active
+                Premium Aktiv
               </span>
             </div>
             
@@ -71,7 +71,7 @@ export default async function SettingsPage() {
 
             {dbUser.subscriptionEndsAt && (
               <div className="space-y-2">
-                <div className="text-sm text-slate-400">Ends at</div>
+                <div className="text-sm text-slate-400">Endet am</div>
                 <div className="text-white">
                   {new Date(dbUser.subscriptionEndsAt).toLocaleDateString('en-US', {
                     year: 'numeric',
@@ -87,31 +87,31 @@ export default async function SettingsPage() {
                 type="submit"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
-                Manage Subscription
+                Abo verwalten
               </button>
             </form>
 
             <p className="text-sm text-slate-400">
-              Update payment method, view invoices, or cancel subscription
+              Zahlungsmethode ändern, Rechnungen ansehen oder Abo kündigen
             </p>
           </div>
         ) : (
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <span className="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm font-medium">
-                Free Plan
+                Kostenlos
               </span>
             </div>
 
             <div className="text-slate-300">
-              You're currently on the free plan. Upgrade to Premium to unlock all features.
+              Du nutzt aktuell den kostenlosen Plan. Upgrade auf Premium, um alle Funktionen freizuschalten.
             </div>
 
             <a
               href="/dashboard"
               className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
-              View Premium Features
+              Premium-Funktionen ansehen
             </a>
           </div>
         )}

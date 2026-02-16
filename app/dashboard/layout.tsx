@@ -14,7 +14,6 @@ export default function DashboardLayout({
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link href="/dashboard" className="flex items-center space-x-2">
-              <span className="text-2xl">👁️</span>
               <span className="text-xl font-bold text-white">WatchMyLinks</span>
             </Link>
 
@@ -30,7 +29,7 @@ export default function DashboardLayout({
                 href="/dashboard/channels" 
                 className="text-slate-300 hover:text-white transition-colors"
               >
-                Channels
+                Kanäle
               </Link>
               <Link 
                 href="/dashboard/links" 
@@ -42,7 +41,7 @@ export default function DashboardLayout({
                 href="/dashboard/settings" 
                 className="text-slate-300 hover:text-white transition-colors"
               >
-                Settings
+                Einstellungen
               </Link>
               
               {/* User Button */}

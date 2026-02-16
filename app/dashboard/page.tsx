@@ -18,10 +18,10 @@ export default async function DashboardPage() {
     include: {
       channels: {
         include: {
-          links: true,
+          Links: true,
         },
       },
-      links: true,
+      Links: true,
     },
   })
 
@@ -34,10 +34,10 @@ export default async function DashboardPage() {
       include: {
         channels: {
           include: {
-            links: true,
+            Links: true,
           },
         },
-        links: true,
+        Links: true,
       },
     })
   }
@@ -54,27 +54,27 @@ export default async function DashboardPage() {
       {/* Welcome Header */}
       <div>
         <h1 className="text-3xl font-bold text-white mb-2">
-          Welcome back, {user.firstName || 'Creator'}! 👋
+          Willkommen zurück, {user.firstName || 'Creator'}! 👋
         </h1>
         <p className="text-slate-400">
-          Here's your affiliate link overview
+          Hier ist deine Affiliate-Link Übersicht
         </p>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-2">Total Channels</div>
+          <div className="text-slate-400 text-sm mb-2">Kanäle gesamt</div>
           <div className="text-3xl font-bold text-white">{totalChannels}</div>
         </div>
         
         <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-2">Total Links</div>
+          <div className="text-slate-400 text-sm mb-2">Links gesamt</div>
           <div className="text-3xl font-bold text-white">{totalLinks}</div>
         </div>
         
         <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-2">Working / Broken</div>
+          <div className="text-slate-400 text-sm mb-2">Funktionierend / Kaputt</div>
           <div className="text-3xl font-bold">
             <span className="text-green-400">{workingLinks}</span>
             <span className="text-slate-600 mx-2">/</span>
@@ -83,7 +83,7 @@ export default async function DashboardPage() {
         </div>
         
         <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-2">Total Revenue</div>
+          <div className="text-slate-400 text-sm mb-2">Gesamtumsatz</div>
           <div className="text-3xl font-bold text-green-400">
             ${totalRevenue.toFixed(2)}
           </div>
@@ -96,21 +96,21 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-xl font-bold text-white mb-2">
-                Upgrade to Premium 🚀
+                Upgrade auf Premium 🚀
               </h3>
               <p className="text-blue-200 mb-4">
-                Get automatic monitoring, email alerts, and multi-platform support
+                Erhalte automatische Überwachung, E-Mail-Benachrichtigungen und Multi-Plattform-Support
               </p>
               <ul className="text-blue-100 text-sm space-y-1">
-                <li>✓ Full channel monitoring</li>
-                <li>✓ Automatic daily checks</li>
-                <li>✓ Email alerts for broken links</li>
-                <li>✓ Analytics dashboard</li>
+                <li>✓ Vollständige Kanal-Überwachung</li>
+                <li>✓ Automatische tägliche Prüfungen</li>
+                <li>✓ E-Mail-Benachrichtigungen bei defekten Links</li>
+                <li>✓ Analytics Dashboard</li>
               </ul>
             </div>
             <div className="text-right">
               <div className="text-4xl font-bold text-white mb-2">$10<span className="text-lg">/mo</span></div>
-              <div className="text-blue-200 text-sm mb-4">50% off for early access</div>
+              <div className="text-blue-200 text-sm mb-4">50% Rabatt für Early Access</div>
               <UpgradeButton />
             </div>
           </div>
@@ -122,17 +122,17 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-xl font-bold text-white mb-2">
-                Premium Active ✨
+                Premium Aktiv ✨
               </h3>
               <p className="text-green-200">
-                You have full access to all premium features
+                Du hast vollen Zugang zu allen Premium-Funktionen
               </p>
             </div>
             <Link
               href="/dashboard/settings"
               className="bg-green-700 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
-              Manage Subscription
+              Abo verwalten
             </Link>
           </div>
         </div>
@@ -143,21 +143,21 @@ export default async function DashboardPage() {
         <div className="bg-slate-800 rounded-lg p-12 border border-slate-700 text-center">
           <div className="text-6xl mb-4">🎬</div>
           <h2 className="text-2xl font-bold text-white mb-4">
-            Add your first channel
+            Füge deinen ersten Kanal hinzu
           </h2>
           <p className="text-slate-400 mb-6 max-w-md mx-auto">
-            Connect your YouTube, Instagram, or TikTok channel to start monitoring your affiliate links
+            Verbinde deinen YouTube, Instagram oder TikTok Kanal, um deine Affiliate-Links zu überwachen
           </p>
           <Link
             href="/dashboard/channels/add"
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
           >
-            Add Channel
+            Kanal hinzufügen
           </Link>
         </div>
       ) : (
         <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <h2 className="text-xl font-bold text-white mb-4">Your Channels</h2>
+          <h2 className="text-xl font-bold text-white mb-4">Deine Kanäle</h2>
           <div className="space-y-4">
             {dbUser.channels.map(channel => (
               <div 
@@ -175,7 +175,7 @@ export default async function DashboardPage() {
                   <div>
                     <div className="font-medium text-white">{channel.channelName}</div>
                     <div className="text-sm text-slate-400">
-                      {channel.platform} • {channel.links.length} links
+                      {channel.platform} • {channel.links.length} Links
                     </div>
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export default async function DashboardPage() {
       {/* Recent Activity */}
       {totalLinks > 0 && (
         <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <h2 className="text-xl font-bold text-white mb-4">Recent Links</h2>
+          <h2 className="text-xl font-bold text-white mb-4">Letzte Links</h2>
           <div className="space-y-3">
             {dbUser.links.slice(0, 5).map(link => (
               <div 

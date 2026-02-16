@@ -18,11 +18,11 @@ export function UpgradeButton({ className = '' }: { className?: string }) {
       if (data.url) {
         window.location.href = data.url
       } else {
-        alert(data.error || 'Failed to create checkout session')
+        alert(data.error || 'Checkout-Session konnte nicht erstellt werden')
       }
     } catch (error) {
       console.error('Upgrade error:', error)
-      alert('Something went wrong. Please try again.')
+      alert('Etwas ist schief gelaufen. Bitte versuche es erneut.')
     } finally {
       setLoading(false)
     }
@@ -34,7 +34,7 @@ export function UpgradeButton({ className = '' }: { className?: string }) {
       disabled={loading}
       className={`bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors ${className}`}
     >
-      {loading ? 'Loading...' : 'Upgrade to Premium'}
+      {loading ? 'Lade...' : 'Auf Premium upgraden'}
     </button>
   )
 }
