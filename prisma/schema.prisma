@@ -39,7 +39,7 @@ model User {
   id                   String              @id @default(cuid())
   email                String              @unique
   name                 String?
-  language             String              @default("en") // "en" or "de"
+  language             String?             // "en" or "de" (optional until we add column to DB)
   createdAt            DateTime            @default(now())
   updatedAt            DateTime            @updatedAt
   
