@@ -141,18 +141,26 @@ export default async function DashboardPage() {
       {/* Empty State or Channel List */}
       {totalChannels === 0 ? (
         <div className="bg-slate-800 rounded-lg p-12 border border-slate-700 text-center">
-          <div className="text-6xl mb-4">🎬</div>
+          <div className="text-6xl mb-4">🔗</div>
           <h2 className="text-2xl font-bold text-white mb-4">
-            Füge deinen ersten Kanal hinzu
+            {dbUser.subscriptionStatus === SubscriptionStatus.ACTIVE 
+              ? 'Füge deinen ersten Kanal hinzu'
+              : 'Prüfe deine ersten Links'}
           </h2>
           <p className="text-slate-400 mb-6 max-w-md mx-auto">
-            Verbinde deinen YouTube, Instagram oder TikTok Kanal, um deine Affiliate-Links zu überwachen
+            {dbUser.subscriptionStatus === SubscriptionStatus.ACTIVE
+              ? 'Verbinde deinen YouTube, Instagram oder TikTok Kanal, um alle Affiliate-Links automatisch zu überwachen'
+              : 'Teste einzelne Video-Links aus YouTube-Beschreibungen (Kanal-Scan nur mit Premium verfügbar)'}
           </p>
           <Link
-            href="/dashboard/channels/add"
+            href={dbUser.subscriptionStatus === SubscriptionStatus.ACTIVE 
+              ? '/dashboard/channels/add' 
+              : '/dashboard/check'}
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
           >
-            Kanal hinzufügen
+            {dbUser.subscriptionStatus === SubscriptionStatus.ACTIVE 
+              ? 'Kanal hinzufügen' 
+              : 'Link prüfen'}
           </Link>
         </div>
       ) : (
