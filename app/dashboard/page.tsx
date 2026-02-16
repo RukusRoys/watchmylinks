@@ -18,10 +18,10 @@ export default async function DashboardPage() {
     include: {
       channels: {
         include: {
-          Links: true,
+          links: true,
         },
       },
-      Links: true,
+      links: true,
     },
   })
 
@@ -34,10 +34,10 @@ export default async function DashboardPage() {
       include: {
         channels: {
           include: {
-            Links: true,
+            links: true,
           },
         },
-        Links: true,
+        links: true,
       },
     })
   }
